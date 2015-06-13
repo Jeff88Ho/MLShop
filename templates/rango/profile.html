@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+
+{% load staticfiles %}
+
+{% block title %}Index{% endblock %}
+
+{% block body_block %}
+
+
+    {% if user.is_authenticated %}
+        <div class="page-header">
+
+        <h1>{{ username }}</h1>
+
+        <img width="150" height="150" src="/media/{{ picture }}" alt="Profile Picture" class="img-rounded" />
+
+        <br>
+        <br>
+        <br>
+
+        <table class="table table-hover">
+            <thead>
+            <tr>
+                <th><h4>{{ username }}'s performance</h4></th>
+                <th><h4>{{ username }}'s info</h4></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td><a id="add" class="btn btn-primary" type="button">{{ likes }}</a> &nbsp; Likes</td>
+                <td>Email: <a href="mailto:{{ user.email }}">{{ user.email }}</a></td>
+            </tr>
+            <tr>
+                <td><a id="add" class="btn btn-warning" type="button">{{ views }}</a> &nbsp; Views</td>
+                <td>Website: <a href="{{ website }}">{{ website }}</a></td>
+            </tr>
+        </table>
+
+
+
+        <br>
+        <br>
+
+
+
+
+
+        <div>
+    {% endif %}
+
+{% endblock %}

@@ -1,0 +1,17 @@
+{% if username_taken %}
+
+<h4 class="text-danger" >The user name is already taken...</h4>
+
+
+{% elif email_taken %}
+
+    <h4 class="text-danger" >The email is already taken...</h4>
+
+
+    {% else %}
+
+
+    <button class="btn btn-primary" type="submit" name="submit">Submit</button>
+
+
+{% endif %}

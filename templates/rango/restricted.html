@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% load staticfiles %}
+
+{% block title %}Rango{% endblock %}
+
+{% block body_block %}
+
+    <body>
+        <h1>Restricted</h1>
+            hello, you can see restricted stuffs! <strong>{{ boldmessage }}</strong><br />
+        <img src="{% static "images/tutu.gif" %}" alt="Picture of tutu" /> <!-- New line -->
+    </body>
+
+
+{% endblock %}

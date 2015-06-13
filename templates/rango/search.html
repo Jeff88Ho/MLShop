@@ -1,0 +1,119 @@
+{% extends "base.html" %}
+
+{% load staticfiles %}
+
+{% block title %}Search{% endblock %}
+
+{% block body_block %}
+
+    <div class="page-header">
+        <h1><img width="50" height="50" src="{% static "images/search.png" %}"  alt="search" /> Powerful Search... <small>for ML recipes</small></h1>
+    </div>
+
+
+    {% if user.is_authenticated %}
+
+        <div class="row">
+
+        <div class="panel panel-primary">
+
+
+            <form class="form-inline">
+                <h3>Search for a <u>Category</u></h3>
+
+
+                <form>
+                    <label></label>
+                    <input  class="form-control" size="50" type="text" name="suggestion" value="" id="suggestion" placeholder="Category" />
+                </form>
+
+
+                <div class="panel-body">
+                    <div class="list-group">
+
+                        <a id="cats"></a> {# search results show here #}
+                    </div>
+                </div>
+
+
+                <br />
+            </form>
+
+        </div>
+
+
+
+
+        <div class="panel panel-primary">
+
+
+            <form class="form-inline">
+                <h3>Search for a <u>Page</u></h3>
+
+
+                <form>
+                    <label></label>
+                    <input  class="form-control" size="50" type="text" name="page_suggestion" value="" id="page_suggestion" placeholder="Page"/>
+                </form>
+
+
+                <div class="panel-body">
+                    <div class="list-group">
+
+                        <a id="pages"></a> {# search results show here #}
+                    </div>
+                </div>
+
+
+                <br />
+            </form>
+
+        </div>
+
+
+
+        <div class="panel panel-primary">
+
+            <form class="form-inline" id="user_form" method="post" action="{% url 'search' %}">
+                <h3>Search the <u>Internet</u></h3>
+                <label></label>
+                {% csrf_token %}
+                <!-- Display the search form elements here -->
+                <input class="form-control" type="text" size="50" name="query" value="" id="query" placeholder="Internet" />
+                <input class="btn btn-primary" type="submit" name="submit" value="Search" />
+                <br />
+                <br>
+                <br>
+                <br>
+            </form>
+
+            <div class="panel">
+                {% if result_list %}
+                    <div class="panel-heading">
+                    <h3 class="panel-title">Results</h3>
+                    <!-- Display search results in an ordered list -->
+                    <div class="panel-body">
+                        <div class="list-group">
+                            {% for result in result_list %}
+                                <div class="list-group-item">
+                                    <h4 class="list-group-item-heading"><a href="{{ result.link }}">{{ result.title }}</a></h4>
+                                    <p class="list-group-item-text">{{ result.summary }}</p>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                {% endif %}
+                </div>
+            </div>
+        </div>
+
+
+    {% else %}
+
+        <h3>Please <a id="add-category" href="{% url 'registration_register' %}" class="btn btn-info" type="button">Sign Up</a>
+            or <a id="add-category" href="{% url 'auth_login' %}" class="btn btn-info" type="button">Log In</a>
+            to get 100% out of <u>ML shop</u></h3>
+
+    {% endif %}
+
+{% endblock %}

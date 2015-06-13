@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% load staticfiles %}
+
+{% block title %}Rango{% endblock %}
+
+{% block body_block %}
+
+    {% if added_profile %}
+    <h3>thank you for adding your profile!</h3>
+    <a href="/rango/">Return to the homepage.</a><br />
+    {% else %}
+    Rango says: <strong>Add your profile here here!</strong><br />
+
+    <form id="user_form" method="post" action="/rango/add_profile/"
+            enctype="multipart/form-data">
+
+        {% csrf_token %}
+
+
+        {{ profile_form.as_p }}
+
+        <!-- Provide a button to click to submit the form. -->
+        <input type="submit" name="submit" value="Register" />
+    </form>
+    {% endif %}
+
+{% endblock %}

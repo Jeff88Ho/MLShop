@@ -1,0 +1,19 @@
+{% if pages %}
+    <ul class="nav nav-sidebar">
+        {% for c in pages %}
+            <div id="result" class="list-group-item">
+
+
+                    <li>
+
+
+                <a href="{{ c.url }}">{{ c.title }}</a>
+                </li>
+            </div>
+
+
+        {% endfor %}
+
+
+    </ul>
+{% endif %}
