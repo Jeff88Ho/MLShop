@@ -80,9 +80,9 @@ WSGI_APPLICATION = 'tango_with_django_project.wsgi.application'
 DATABASES = {'default':
                  {
                       'ENGINE': 'django.db.backends.mysql',
-                      'NAME': 'Jeff88Ho$default',
-                      'USER': 'jeff88Ho',
-                      'PASSWORD': '',
+                      'NAME': 'Jeff88Ho$MLShop',
+                      'USER': 'Jeff88Ho',
+                      'PASSWORD': 'hijacky2010',
                       'HOST': 'mysql.server',   # Or an IP Address that your DB is hosted on
                       'PORT': ''
                   }
