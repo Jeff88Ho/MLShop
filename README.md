@@ -1,3 +1,3 @@
 # MLShop
 
-Django website for machine learning resources
+Django website for ML lovers to store and share machine learning resources
