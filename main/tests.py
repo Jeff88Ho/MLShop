@@ -1,10 +1,10 @@
 from django.test import TestCase
 
-from rango.models import Category
+from main.models import Category
 
 from django.core.urlresolvers import reverse
 
-from rango.models import Category
+from main.models import Category
 
 
 

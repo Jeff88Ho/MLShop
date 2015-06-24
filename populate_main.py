@@ -4,7 +4,7 @@ os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'MLShop.settings')
 import django
 django.setup()
 
-from rango.models import Category, Page
+from main.models import Category, Page
 
 
 def populate():
@@ -67,5 +67,5 @@ def add_cat(name, views=0, likes=0):
 
 # Start execution here!
 if __name__ == '__main__':
-    print "Starting Rango population script..."
+    print "Starting main population script..."
     populate()

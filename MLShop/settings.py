@@ -37,7 +37,7 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'rango',
+    'main',
     'registration',
 )
 
@@ -74,17 +74,28 @@ TEMPLATES = [
 WSGI_APPLICATION = 'MLShop.wsgi.application'
 
 
-# Database
-# https://docs.djangoproject.com/en/1.8/ref/settings/#databases
+# Pyhtonanywhere Database
+#
+# DATABASES = {'default':
+#                  {
+#                       'ENGINE': 'django.db.backends.mysql',
+#                       'NAME': 'Jeff88Ho$MLShop',
+#                       'USER': 'Jeff88Ho',
+#                       'PASSWORD': 'hijacky2010',
+#                       'HOST': 'mysql.server',
+#                       'PORT': ''
+#                   }
+#               }
 
+# Local Database
 DATABASES = {'default':
                  {
                       'ENGINE': 'django.db.backends.mysql',
-                      'NAME': 'Jeff88Ho$MLShop',
-                      'USER': 'Jeff88Ho',
+                      'NAME': 'MLShop',
+                      'USER': 'Jeff',
                       'PASSWORD': 'hijacky2010',
-                      'HOST': 'mysql.server',   # Or an IP Address that your DB is hosted on
-                      'PORT': ''
+                      'HOST': 'localhost',
+                      'PORT': '3306'
                   }
               }
 
@@ -120,7 +131,7 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media') # Absolute path to the media direct
 REGISTRATION_OPEN = True                # If True, users can register
 ACCOUNT_ACTIVATION_DAYS = 7     # One-week activation window; you may, of course, use a different value.
 REGISTRATION_AUTO_LOGIN = True  # If True, the user will be automatically logged in.
-LOGIN_REDIRECT_URL = '/rango/'  # The page you want users to arrive at after they successful log in
+LOGIN_REDIRECT_URL = '/main/'  # The page you want users to arrive at after they successful log in
 LOGIN_URL = '/accounts/login/'  # The page users are directed to if they are not logged in,
 
 

@@ -4,7 +4,7 @@ $(document).ready(function() {
     $('#likes').click(function(){
 
         var catid = $(this).attr("data-catid");
-        $.get('/rango/like_category/', {cat_id: catid}, function(data){
+        $.get('/main/like_category/', {cat_id: catid}, function(data){
             $('#like_count').html(data);
             $('#likes').hide();
         });
@@ -15,7 +15,7 @@ $(document).ready(function() {
     $('#suggestion').keyup(function(){
         var query;
         query = $(this).val();
-        $.get('/rango/suggest_category/', {suggestion: query}, function(data){
+        $.get('/main/suggest_category/', {suggestion: query}, function(data){
             $('#cats').html(data);
         });
     });
@@ -25,7 +25,7 @@ $(document).ready(function() {
     $('#page_suggestion').keyup(function(){
         var query;
         query = $(this).val();
-        $.get('/rango/suggest_page/', {suggestion: query}, function(data){
+        $.get('/main/suggest_page/', {suggestion: query}, function(data){
             $('#pages').html(data);
         });
     });
@@ -45,7 +45,7 @@ $(document).ready(function() {
         $(this).hide();
 
 
-        $.get('/rango/auto_add_page/', {cat_id: catid, title: title, url: url}, function(data){
+        $.get('/main/auto_add_page/', {cat_id: catid, title: title, url: url}, function(data){
 
             $('#pages').html(data);
 
@@ -61,7 +61,7 @@ $(document).ready(function() {
     $('#id_username').keyup(function(){
         var id_username;
         id_username = $(this).val();
-        $.get('/rango/username_taken/', {id_username: id_username}, function(data){
+        $.get('/main/username_taken/', {id_username: id_username}, function(data){
             $('#username_taken').html(data);
 
         });
@@ -72,7 +72,7 @@ $(document).ready(function() {
     $('#id_email').keyup(function(){
         var id_email;
         id_email = $(this).val();
-        $.get('/rango/email_taken/', {id_email: id_email}, function(data){
+        $.get('/main/email_taken/', {id_email: id_email}, function(data){
             $('#username_taken').html(data);
 
         });

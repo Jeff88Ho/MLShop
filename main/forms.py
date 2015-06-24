@@ -1,7 +1,7 @@
 from django import forms
-from rango.models import Page, Category
+from main.models import Page, Category
 from django.contrib.auth.models import User
-from rango.models import Category, Page, UserProfile
+from main.models import Category, Page, UserProfile
 
 class CategoryForm(forms.ModelForm):
     name = forms.CharField(max_length=128, help_text="Please enter the category name.")

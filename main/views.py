@@ -1,16 +1,16 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-from rango.models import Category
-from rango.models import Page
-from rango.models import UserProfile
-from rango.forms import CategoryForm, PageForm
-from rango.forms import UserForm, UserProfileForm
+from main.models import Category
+from main.models import Page
+from main.models import UserProfile
+from main.forms import CategoryForm, PageForm
+from main.forms import UserForm, UserProfileForm
 from django.contrib.auth import authenticate, login
 from django.http import HttpResponseRedirect, HttpResponse
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import logout
 from datetime import datetime
-from rango.bing_search import run_query
+from main.bing_search import run_query
 from django.template import RequestContext
 from django.shortcuts import redirect
 from django.contrib.auth.models import User
@@ -58,7 +58,7 @@ def category(request, category_name_slug):
     if not context_dict['query']:
         context_dict['query'] = category.name
 
-    return render(request, 'rango/category.html', context_dict)
+    return render(request, 'main/category.html', context_dict)
 
 
 
@@ -106,7 +106,7 @@ def index(request):
         context_dict['last_visit'] = "No last visit info"
 
 
-    response = render(request,'rango/index.html', context_dict)
+    response = render(request,'main/index.html', context_dict)
 
     return response
 
@@ -125,7 +125,7 @@ def about(request):
         last_visit = "No last visit info"
 
 
-    response = render(request, 'rango/about.html', {'visits': visits, 'last_visit': last_visit})
+    response = render(request, 'main/about.html', {'visits': visits, 'last_visit': last_visit})
 
     return response
 
@@ -159,7 +159,7 @@ def add_category(request):
 
     # Bad form (or form details), no form supplied...
     # Render the form with error messages (if any).
-    return render(request, 'rango/add_category.html', {'form': form})
+    return render(request, 'main/add_category.html', {'form': form})
 
 
 def add_page(request, category_name_slug):
@@ -183,7 +183,7 @@ def add_page(request, category_name_slug):
                 page.save()
                 # probably better to use a redirect here.
 
-                category_url = '/rango/category/%s' % category_name_slug
+                category_url = '/main/category/%s' % category_name_slug
 
                 return redirect(category_url)
         else:
@@ -193,7 +193,7 @@ def add_page(request, category_name_slug):
 
     context_dict = {'form': form, 'category': cat,}
 
-    return render(request, 'rango/add_page.html', context_dict)
+    return render(request, 'main/add_page.html', context_dict)
 
 
 def register(request):
@@ -250,7 +250,7 @@ def register(request):
 
     # Render the template depending on the context.
     return render(request,
-            'rango/register.html',
+            'main/register.html',
             {'user_form': user_form, 'profile_form': profile_form, 'registered': registered} )
 
 
@@ -280,10 +280,10 @@ def user_login(request):
                 # If the account is valid and active, we can log the user in.
                 # We'll send the user back to the homepage.
                 login(request, user)
-                return HttpResponseRedirect('/rango/')
+                return HttpResponseRedirect('/main/')
             else:
                 # An inactive account was used - no logging in!
-                return HttpResponse("Your Rango account is disabled.")
+                return HttpResponse("Your account is disabled.")
         else:
             # Bad login details were provided. So we can't log the user in.
             print "Invalid login details: {0}, {1}".format(username, password)
@@ -294,12 +294,12 @@ def user_login(request):
     else:
         # No context variables to pass to the template system, hence the
         # blank dictionary object...
-        return render(request, 'rango/login.html', {})
+        return render(request, 'main/login.html', {})
 
 
 @login_required
 def restricted(request):
-    return render(request, 'rango/restricted.html', {})
+    return render(request, 'main/restricted.html', {})
 
 # Use the login_required() decorator to ensure only those logged in can access the view.
 @login_required
@@ -308,7 +308,7 @@ def user_logout(request):
     logout(request)
 
     # Take the user back to the homepage.
-    return HttpResponseRedirect('/rango/')
+    return HttpResponseRedirect('/main/')
 
 
 
@@ -323,12 +323,12 @@ def search(request):
             # Run our Bing function to get the results list!
             result_list = run_query(query)
 
-    return render(request, 'rango/search.html', {'result_list': result_list})
+    return render(request, 'main/search.html', {'result_list': result_list})
 
 
 def track_url(request):
 
-    url = '/rango/'
+    url = '/main/'
 
     if request.method == 'GET':
 
@@ -399,7 +399,7 @@ def register_profile(request):
 
     # Render the template depending on the context.
     return render(request,
-            'rango/add_profile.html',
+            'main/add_profile.html',
             {'profile_form': profile_form, 'added_profile': added_profile} )
 
 
@@ -444,7 +444,7 @@ def profile(request):
     context_dict['likes'] = likes
     context_dict['views'] = views
 
-    response = render(request,'rango/profile.html',context_dict )
+    response = render(request,'main/profile.html',context_dict )
 
     return response
 
@@ -489,7 +489,7 @@ def suggest_category(request):
 
     cat_list = get_category_list(10, starts_with)
 
-    return render(request, 'rango/search_cats.html', {'cats': cat_list})
+    return render(request, 'main/search_cats.html', {'cats': cat_list})
 
 
 
@@ -515,7 +515,7 @@ def suggest_page(request):
 
     page_list = get_page_list(10, starts_with)
 
-    return render(request, 'rango/search_pages.html', {'pages': page_list})
+    return render(request, 'main/search_pages.html', {'pages': page_list})
 
 
 
@@ -550,7 +550,7 @@ def auto_add_page(request):
             # Adds our results list to the template context under name pages.
             context_dict['pages'] = pages
 
-    return render(request, 'rango/page_list.html', context_dict)
+    return render(request, 'main/page_list.html', context_dict)
 
 
 def check_username(username=''):
@@ -576,7 +576,7 @@ def username_taken(request):
 
     email_taken = False
 
-    return render(request, 'rango/username_taken.html', {'username_taken': username_taken, 'email_taken': email_taken})
+    return render(request, 'main/username_taken.html', {'username_taken': username_taken, 'email_taken': email_taken})
 
 
 
@@ -604,4 +604,4 @@ def email_taken(request):
 
     email_taken = check_email(email=email)
 
-    return render(request, 'rango/username_taken.html', {'username_taken': username_taken, 'email_taken': email_taken})
+    return render(request, 'main/username_taken.html', {'username_taken': username_taken, 'email_taken': email_taken})

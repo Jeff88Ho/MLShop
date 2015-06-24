@@ -2,7 +2,7 @@
 
 {% load staticfiles %}
 
-{% load rango_extras %}
+{% load main_extras %}
 
 
 <html lang="en">
@@ -14,7 +14,7 @@
     <meta name="author" content="">
     <link rel="icon" href="http://getbootstrap.com/favicon.ico">
 
-    <title>Rango - {% block title %}Machine Learning Shop{% endblock %}</title>
+    <title>{% block title %}Machine Learning Shop{% endblock %}</title>
 
     <link href="http://getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="http://getbootstrap.com/examples/dashboard/dashboard.css" rel="stylesheet">
@@ -36,14 +36,14 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="/rango/">ML Shop</a>
+            <a class="navbar-brand" href="/main/">ML Shop</a>
         </div>
         <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="{% url 'about' %}">About</a></li>
                 {% if user.is_authenticated %}
                     <li><a href="{% url 'profile' %}">Profile</a></li>
-                    <li><a href="{% url 'auth_logout' %}?next=/rango/">Log Out</a></li>
+                    <li><a href="{% url 'auth_logout' %}?next=/main/">Log Out</a></li>
                 {% else %}
                     <li><a href="{% url 'registration_register' %}">Sign Up</a></li>
                     <li><a href="{% url 'auth_login' %}">Log In</a></li>
@@ -110,8 +110,8 @@
 ================================================== -->
 <!-- Placed at the end of the document so the pages load faster -->
 <script src="{% static "js/jquery-1.11.1.js" %}"></script>
-<script src="{% static "js/rango-jquery.js" %}"></script>
-<script src="{% static "js/rango-ajax.js" %}"></script>
+<script src="{% static "js/main-jquery.js" %}"></script>
+<script src="{% static "js/main-ajax.js" %}"></script>
 <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
 <script src="http://getbootstrap.com/assets/js/ie10-viewport-bug-workaround.js"></script>
 </body>

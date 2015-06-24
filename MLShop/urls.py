@@ -18,16 +18,16 @@ from django.contrib import admin
 from django.conf import settings
 from registration.backends.simple.views import RegistrationView
 
-
-
-
 class MyRegistrationView(RegistrationView):
     def get_success_url(self,request, user):
-        return '/rango/add_profile/'
+        return '/main/add_profile/'
+
 
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
-    url(r'^rango/', include('rango.urls')),
+
+    url(r'^$', include('main.urls')),
+    url(r'^main/', include('main.urls')),
     url(r'^accounts/register/$', MyRegistrationView.as_view(), name='registration_register'),
     url(r'^accounts/', include('registration.backends.default.urls')),
 ]
@@ -39,3 +39,4 @@ if settings.DEBUG:
         (r'^media/(?P<path>.*)',
         'serve',
         {'document_root': settings.MEDIA_ROOT}), )
+

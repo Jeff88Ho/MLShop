@@ -30,7 +30,7 @@ class Migration(migrations.Migration):
                 ('title', models.CharField(max_length=128)),
                 ('url', models.URLField()),
                 ('views', models.PositiveIntegerField(default=0)),
-                ('category', models.ForeignKey(to='rango.Category')),
+                ('category', models.ForeignKey(to='main.Category')),
                 ('provider', models.ForeignKey(blank=True, to=settings.AUTH_USER_MODEL, null=True)),
             ],
         ),
