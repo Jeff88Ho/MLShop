@@ -25,7 +25,7 @@ SECRET_KEY = '53b6y-@=x-^298u#gnwj00^yqrp@w6rs69-1q*1yvl3xtymg4h'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['www.mlshop.space/']
 
 
 # Application definition
